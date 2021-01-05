@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IMqttMessage, MqttModule, IMqttServiceOptions } from 'ngx-mqtt';
+import { MqttModule, IMqttServiceOptions } from 'ngx-mqtt';
 import { AppComponent } from './app.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
