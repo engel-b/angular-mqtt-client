@@ -11,18 +11,6 @@ tr.detail-row {
   height: 0;
 }
 
-tr.vehicles-car1, tr.vehicles-car1-tele {
-  background: #FF8C8C;
-}
-
-tr.vehicles-car2, tr.vehicles-car2-tele {
-  background: #1EAE98;
-}
-
-tr.vehicles-car3, tr.vehicles-car3-tele {
-  background: #6FD6FF;
-}
-
 tr.message-row:not(.expanded-row):hover {
   background: whitesmoke;
 }
