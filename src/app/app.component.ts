@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IMqttMessage, MqttService } from 'ngx-mqtt';
 import { Subscription } from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +26,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   public message: string;
-  public connected: false;
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild('filter',  {static: true}) filter: ElementRef;
 
   constructor(private _mqttService: MqttService) {
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
   public connect(): void {
@@ -59,8 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public getClassName(topic: string): string {
+    // replace all "/" by "-"
     let regex = /\//gi;
-    //let result = email.replace(re, "x");
     return topic.replace(regex, "-");
   }
 
